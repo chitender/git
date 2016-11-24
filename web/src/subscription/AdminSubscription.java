@@ -9,31 +9,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-
-
-
 public class AdminSubscription{
+	private String response1 = null;
 	
 	private final String USER_AGENT = "Mozilla/5.0";
 		
-	Form form = new Form();
-		public String admin = form.tf1.getText();
-		public String campaign = form.tf6.getText();
-		
-		
-private final String URL = ("http://127.0.0.1:11088/testpfsapi/test?cmd=registrationRequest&1=91" +admin + "&2=true&3=" +campaign);
-
-
-public void activation() throws IOException {
-		PaidActivation();
-		System.out.println(URL);
-		System.out.println("Activation DONE");
+	thehandler form = new Form.thehandler();
 	
-	 }
+			
 
 
-private void PaidActivation() throws IOException {
-	URL obj = new URL(URL);
+
+
+public void PaidActivation(String s) throws IOException {
+	URL obj = new URL(s);
 	HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 	con.setRequestMethod("GET");
 	con.setRequestProperty("User-Agent", USER_AGENT);
@@ -51,10 +40,14 @@ private void PaidActivation() throws IOException {
 		in.close();
 
 		// print result
-		System.out.println(response.toString());
-	} else {
-		System.out.println("GET request not worked");
-	}
+		
+		response1 = response.toString();
+		System.out.println(response1);
+		
+		if (response.equals("Success")){
+			//update FF_USER_PROFILE
+		}
+	} 
 
 }
 

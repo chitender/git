@@ -1,8 +1,10 @@
 package web;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import subscription.AdminSubscription;
+import subscription.UserProfileUpdation;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
@@ -51,6 +53,7 @@ public class Form extends JFrame {
 		b1.addActionListener(handler);
 		b2.addActionListener(handler);
 		
+	
 		
         
 		l1.setBounds(100, 30, 400, 30);
@@ -108,7 +111,10 @@ public class Form extends JFrame {
 	public static class thehandler implements ActionListener{
 		
 	
-    	@Override
+    	public final String s1 = null;
+    	public final String s6 = null;
+
+		@Override
 		public void actionPerformed(ActionEvent event) 
      {
         if (event.getSource() == b1)
@@ -124,16 +130,19 @@ public class Form extends JFrame {
             String s8 = tf8.getText();
             String s9 = tf9.getText();
             
+            
             JOptionPane.showMessageDialog(null, "Admin MSISDn is" +s1);
             JOptionPane.showMessageDialog(null, "CAMPAIGN ID is" +s6);
-            AdminSubscription paidactivation = new AdminSubscription();
+            UserProfileUpdation profileupdate = new UserProfileUpdation();
+            
             try {
-            	
-				paidactivation.activation();
-			} catch (IOException e) {
+				profileupdate.Mysql(s1,s6);
+			} catch (ClassNotFoundException | IOException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+            
+            
             
         	            
             
